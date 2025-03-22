@@ -9,14 +9,10 @@
 #include <dt-bindings/zmk/bt.h>
 
 #define LYR_BASE 0
-#define LYR_QWERTY 1
+#define LYR_GAME 1
 #define LYR_NUM 2
 #define LYR_NAV 3
 #define LYR_ADJ 4
-
-&mt {
-        quick-tap-ms = <200>;
-};
 
 / {
         keymap {
@@ -25,32 +21,33 @@
                 base_layer {
                         label = "BASE";
 // -----------------------------------------------------------------------------------------
-// | ESC  |  Q  |  W  |  F  |  P  |  B  |     |  J  |  L  |  U  |  Y  |  ;  | DEL |
-// | BSPC |  A  |  R  |  S  |  T  |  G  |     |  M  |  N  |  E  |  I  |  O  |  '  |
-// | CTRL |  Z  |  X  |  C  |  D  |  V  |     |  K  |  H  |  ,  |  .  |  /  | GUI |
-//                | ALT | NUM | SHF/SPC |     | SHF/RET | NAV | TAB |
-//                          \-------------ADJ-------------/
+// | ESC  |  Q  |  W  |  E  |  R  |  T  |     |  Y  |  U  |  I  |  O  |  P  | ALT  |
+// | TAB  |  A  |  S  |  D  |  F  |  G  |     |  H  |  J  |  K  |  L  |  ;  |  '   |
+// | CTRL |  Z  |  X  |  C  |  V  |  B  |     |  N  |  M  |  ,  |  .  |  /  | GUI  |
+//                   | NUM | SHFT | SPC |     | BSPC | SHFT | NAV |
+//                       \     \----------RET-----------/     /
+//                        \---------------ADJ----------------/
                         bindings = <
-   &kp ESC   &kp Q &kp W &kp F &kp P &kp B    &kp J &kp L  &kp U     &kp Y   &kp SEMI &kp DEL
-   &kp BSPC  &kp A &kp R &kp S &kp T &kp G    &kp M &kp N  &kp E     &kp I   &kp O    &kp SQT
-   &kp LCTRL &kp Z &kp X &kp C &kp D &kp V    &kp K &kp H  &kp COMMA &kp DOT &kp FSLH &kp LGUI
-      &kp LALT &mo LYR_NUM &mt LSHFT SPACE    &mt RSHFT RET &mo LYR_NAV &kp TAB
+   &kp ESC   &kp Q &kp W &kp E &kp R &kp T    &kp Y &kp U  &kp I     &kp O   &kp P    &kp LALT
+   &kp TAB   &kp A &kp S &kp D &kp F &kp G    &kp H &kp J  &kp K     &kp L   &kp SEMI &kp SQT
+   &kp LCTRL &kp Z &kp X &kp C &kp V &kp B    &kp N &kp M  &kp COMMA &kp DOT &kp FSLH &kp LGUI
+           &mo LYR_NUM &mo LSHFT &kp SPACE    &kp BSPC &kp RSHFT &mo LYR_NAV
                         >;
                 };
 
-                qwerty_layer {
-                        label = "QWERTY";
+                game_layer {
+                        label = "GAME";
 // -----------------------------------------------------------------------------------------
 // | TAB  |  Q  |  W  |  E  |  R  |  T  |     |  Y  |  U  |  I  |  O  |  P  | BSPC |
 // | SHFT |  A  |  S  |  D  |  F  |  G  |     |  H  |  J  |  K  |  L  |  ;  |  '   |
 // | CTRL |  Z  |  X  |  C  |  V  |  B  |     |  N  |  M  |  ,  |  .  |  /  | GUI  |
-//                    | ALT | NUM | SPC |     | RET | NAV | ESC |
-//                              \---------ADJ---------/
+//                    | NUM | TAB | SPC |     | RET | ALT | NAV |
+//                        \---------------ADJ---------------/
                         bindings = <
-   &kp TAB   &kp Q &kp W &kp E &kp R &kp T    &kp Y &kp U  &kp I     &kp O   &kp P    &kp BSPC
+   &kp ESC   &kp Q &kp W &kp E &kp R &kp T    &kp Y &kp U  &kp I     &kp O   &kp P    &kp BSPC
    &kp LSHFT &kp A &kp S &kp D &kp F &kp G    &kp H &kp J  &kp K     &kp L   &kp SEMI &kp SQT
    &kp LCTRL &kp Z &kp X &kp C &kp V &kp B    &kp N &kp M  &kp COMMA &kp DOT &kp FSLH &kp LGUI
-            &kp LALT &mo LYR_NUM &kp SPACE    &kp RET &mo LYR_NAV &kp ESC
+             &mo LYR_NUM &kp TAB &kp SPACE    &kp RET &kp ALT &mo LYR_NAV
                         >;
                 };
 
@@ -58,24 +55,24 @@
                         label = "NUM";
 // -----------------------------------------------------------------------------------------
 // | F1  | F2  | F3  | F4  | F5  | F6  |     | F7  | F8  | F9  | F10 | F11 | F12 |
-// |     |  1  |  2  |  3  |  4  |  5  |     |  6  |  7  |  8  |  9  |  0  |  `  |
+// |  `  |  1  |  2  |  3  |  4  |  5  |     |  6  |  7  |  8  |  9  |  0  |     |
 // |     |     |     |  [  |  ]  |     |     |     |  -  |  =  |  \  |     |     |
 //                   |     |     |     |     |     |     |     |
                         bindings = <
-   &kp F1  &kp F2 &kp F3 &kp F4   &kp F5   &kp F6     &kp F7  &kp F8    &kp F9    &kp F10   &kp F11  &kp F12
-   &trans  &kp N1 &kp N2 &kp N3   &kp N4   &kp N5     &kp N6  &kp N7    &kp N8    &kp N9    &kp N0   &kp GRAVE
-   &trans  &trans &trans &kp LBKT &kp RBKT &trans     &trans  &kp MINUS &kp EQUAL &kp BSLH  &trans   &trans
-                           &trans  &trans  &trans     &trans  &trans    &trans
+   &kp F1     &kp F2 &kp F3 &kp F4   &kp F5   &kp F6     &kp F7  &kp F8    &kp F9    &kp F10   &kp F11  &kp F12
+   &kp GRAVE  &kp N1 &kp N2 &kp N3   &kp N4   &kp N5     &kp N6  &kp N7    &kp N8    &kp N9    &kp N0   &trans
+   &trans     &trans &trans &kp LBKT &kp RBKT &trans     &trans  &kp MINUS &kp EQUAL &kp BSLH  &trans   &trans
+                              &trans  &trans  &trans     &trans  &trans    &trans
                         >;
                 };
 
                 nav_layer {
                         label = "NAV";
 // -----------------------------------------------------------------------------------------
-// |    |    | BACK| HOME| PGUP|    |     |    |     | UP  |     |    |    |
-// |    |    | FWD | END | PGDN|    |     |    | LT  | DN  | RT  |    |    |
-// |    |    |     |     |     |    |     |    |     |     |     |    |    |
-//                 |     |     |    |     |    |     |     |
+// |    |    | BACK | HOME | PGUP |    |     |    |    | UP |    |    |    |
+// |    |    | FWD  | END  | PGDN |    |     |    | LT | DN | RT |    |    |
+// |    |    |      |      |      |    |     |    |    |    |    |    |    |
+//                  |      |      |    |     |    |    |    |
                         bindings = <
    &trans  &trans  &kp C_AC_BACK    &kp HOME &kp PG_UP &trans      &trans  &trans   &kp UP   &trans    &trans  &trans
    &trans  &trans  &kp C_AC_FORWARD &kp END  &kp PG_DN &trans      &trans  &kp LEFT &kp DOWN &kp RIGHT &trans  &trans
@@ -88,14 +85,14 @@
                         label = "ADJUST";
 // -----------------------------------------------------------------------------------------
 // |       |     |     |     |     |     |     |  BASE  | VL_UP | PREV | BR_UP |    |    |
-// | BTCLR | BT1 | BT2 | BT3 | BT4 | BT5 |     | QWERTY | VL_DN | NEXT | BR_DN |    |    |
+// | BTCLR | BT1 | BT2 | BT3 | BT4 | BT5 |     |  GAME  | VL_DN | NEXT | BR_DN |    |    |
 // | CAPS  |     |     |     |     |     |     |        | MUTE  | P/P  |       |    |    |
 //                     |     |     |     |     |        |       |      |
                         bindings = <
    &trans     &trans       &trans       &trans       &trans       &trans         &to LYR_BASE   &kp C_VOL_UP &kp C_PREV &kp C_BRI_UP &trans  &trans
-   &bt BT_CLR &bt BT_SEL 0 &bt BT_SEL 1 &bt BT_SEL 2 &bt BT_SEL 3 &bt BT_SEL 4   &to LYR_QWERTY &kp C_VOL_DN &kp C_NEXT &kp C_BRI_DN &trans  &trans
+   &bt BT_CLR &bt BT_SEL 0 &bt BT_SEL 1 &bt BT_SEL 2 &bt BT_SEL 3 &bt BT_SEL 4   &to LYR_GAME   &kp C_VOL_DN &kp C_NEXT &kp C_BRI_DN &trans  &trans
    &kp CAPS   &trans       &trans       &trans       &trans       &trans         &trans         &kp C_MUTE   &kp C_PP   &trans  &trans  &trans
-                          	            &trans       &trans       &trans         &trans         &trans  &trans
+                                        &trans       &trans       &trans         &trans         &trans       &trans
                         >;
                 };
 
@@ -108,6 +105,15 @@
         tri_layer {
             if-layers = <LYR_NUM LYR_NAV>;
             then-layer = <LYR_ADJ>;
+        };
+    };
+
+    combos {
+        compatible = "zmk,combos";
+        combo_ret {
+            key-positions = <37 41>;
+	    layers = <0 2 3 4>;
+	    bindings = <&kp RET>;
         };
     };
 };
