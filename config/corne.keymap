@@ -112,13 +112,13 @@
         lshft_ret: dbl_shft_ret_l {
             compatible = "zmk,behavior-mod-morph";
             bindings = <&kp LSHFT>, <&kp RET>;
-            mods = <(MOD_RSFT)>
+            mods = <(MOD_RSFT)>;
         };
 
         rshft_ret: dbl_shft_ret_r {
             compatible = "zmk,behavior-mod-morph";
             bindings = <&kp RSHFT>, <&kp RET>;
-            mods = <(MOD_LSFT)>
+            mods = <(MOD_LSFT)>;
         };
     };
 };
